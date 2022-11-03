@@ -1,2 +1,2 @@
 # pbp-flutter-tutorial
-Tutorial PBP for Mobile Development Using Flutter
+Repository for PBP Mobile Development Tutorial Using Flutter
