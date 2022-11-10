@@ -15,7 +15,9 @@ class _MyFormPageState extends State<MyFormPage> {
   bool jenjangDiploma = false;
   bool jenjangMagister = false;
   bool jenjangDoktor = false;
-  double umur = 0;
+  String jenjang = "";
+  double umurSlider = 0;
+  int umur = 0;
   String kelasPBP = 'A';
   List<String> listKelasPBP = ['A', 'B', 'C', 'D', 'E', 'F', 'KI'];
   bool _nilaiSwitch = false;
@@ -118,6 +120,7 @@ class _MyFormPageState extends State<MyFormPage> {
                           if (value){
                             jenjangMagister = jenjangDiploma = jenjangDoktor = false;
                           }
+                          jenjang = "Sarjana";
                         });
                         },
                       ),
@@ -130,6 +133,7 @@ class _MyFormPageState extends State<MyFormPage> {
                           if (value){
                             jenjangMagister = jenjangSarjana = jenjangDoktor = false;
                           }
+                          jenjang = "Diploma";
                         });
                         },
                       ),
@@ -142,6 +146,7 @@ class _MyFormPageState extends State<MyFormPage> {
                           if (value){
                             jenjangDiploma = jenjangSarjana = jenjangDoktor = false;
                           }
+                          jenjang = "Magister";
                         });
                         },
                       ),
@@ -154,6 +159,7 @@ class _MyFormPageState extends State<MyFormPage> {
                           if (value){
                             jenjangMagister = jenjangSarjana = jenjangDiploma = false;
                           }
+                          jenjang = "Doktor";
                         });
                         },
                       ),
@@ -164,17 +170,18 @@ class _MyFormPageState extends State<MyFormPage> {
                   leading: const Icon(Icons.co_present),
                   title: Row(
                     children: [
-                      Text('Umur: ${umur.round()}'),
+                      Text('Umur: ${umurSlider.round()}'),
                     ],
                   ),
                   subtitle: Slider(
-                    value: umur,
+                    value: umurSlider,
                     max: 100,
                     divisions: 100,
-                    label: umur.round().toString(),
+                    label: umurSlider.round().toString(),
                     onChanged: (double value) {
                       setState(() {
-                        umur = value;
+                        umurSlider = value;
+                        umur = umurSlider.toInt();
                       });
                     },
                   ),
@@ -232,12 +239,24 @@ class _MyFormPageState extends State<MyFormPage> {
                               shrinkWrap: true,
                               children: <Widget>[
                                 const Center(child: Text('Informasi Data')),
-                                const SizedBox(height: 20),
+                                const SizedBox(height: 10),
                                 Text(
-                                  'Judul: $_namaLengkap',
+                                  'Nama: $_namaLengkap',
                                   textAlign: TextAlign.center,
                                 ),
-                                const SizedBox(height: 10),
+                                Text(
+                                  'Kelas: $kelasPBP',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  'Jenjang Perkuliahan: $jenjang',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  'Umur: $umur',
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 6),
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
