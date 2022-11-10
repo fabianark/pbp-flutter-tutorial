@@ -179,6 +179,27 @@ class _MyFormPageState extends State<MyFormPage> {
                     },
                   ),
                 ),
+                ListTile(
+                  leading: const Icon(Icons.class_),
+                  title: const Text(
+                    'Kelas PBP',
+                  ),
+                  trailing: DropdownButton(
+                    value: kelasPBP,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: listKelasPBP.map((String items) {
+                      return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        kelasPBP = newValue!;
+                      });
+                    },
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: SwitchListTile(
